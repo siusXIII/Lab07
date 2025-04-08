@@ -14,8 +14,12 @@ class Controller:
         self._mese = 0
 
     def handle_umidita_media(self, e):
-        pass
-
+        self._view.lst_result.controls.clear()
+        self._mese = self._view.dd_mese.value
+        self.umidita = self._model.getUmidita(self._mese)
+        for (loc, med) in self.umidita:
+            self._view.lst_result.controls.append(ft.Text(f"{loc}: {med}"))
+        self._view.update_page()
 
 
     def handle_sequenza(self, e):
